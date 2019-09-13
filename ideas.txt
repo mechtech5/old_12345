@@ -1,11 +1,24 @@
+Job Alerts
+#Get relevant jobs directly in your inbox
+#Stay updated with latest opportunities
+#Be the first one to apply
+#Create up to 5 personalized job alerts
+
 users
 
 job_alerts
 
-skill
-
+jobs
+skills
 designations
 
-schools
+hashtags
 
+schools
 locations
+
+{
+	'skills' => [1, 2, 3]
+	'designations' =>
+	'schools' =>
+}
