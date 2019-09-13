@@ -1,0 +1,11 @@
+users
+
+job_alerts
+
+skill
+
+designations
+
+schools
+
+locations
