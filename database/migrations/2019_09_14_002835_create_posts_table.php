@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHashtagsTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateHashtagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hashtags', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id'); //who started this
+            $table->unsignedBigInteger('author_id');
             $table->string('title');
+            $table->text('body');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateHashtagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hashtags');
+        Schema::dropIfExists('posts');
     }
 }

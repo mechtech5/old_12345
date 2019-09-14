@@ -17,7 +17,6 @@ class CreateJobalertsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('title');
-            $table->string('email');
             $table->text('keywords');
             $table->text('locations');
             $table->unsignedInteger('work_exp');
