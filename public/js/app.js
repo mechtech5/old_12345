@@ -49350,6 +49350,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+Vue.component('home-feed', __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module './modules/HomeFeed.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49507,8 +49508,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ayushlikhar/code/dream/deploy/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/ayushlikhar/code/dream/deploy/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/ayushlikhar/code/dream/hostinger-deploy/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/ayushlikhar/code/dream/hostinger-deploy/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
