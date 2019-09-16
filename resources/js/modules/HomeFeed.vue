@@ -22,8 +22,14 @@
 								
 							</div>
 							<div class="col-4">
-								<button type="button" class="float-right btn btn-sm btn-outline-success">Save Draft</button>
-								<button type="button" class="float-right btn btn-sm btn-success mr-2">Post</button>
+								<span v-if="logged_user">
+									<!-- <button type="button" class="float-right btn btn-sm btn-outline-success"></button> -->
+									<button type="button" class="float-right btn btn-sm btn-outline-light text-dark">Save Draft</button>
+									<button type="button" class="float-right btn btn-sm btn-success mr-2">Post</button>
+								</span>
+								<span v-else>
+									<button type="button" class="float-right btn btn-sm btn-primary">Login to Post</button>
+								</span>
 							</div>
 						</div>
 						
@@ -48,6 +54,11 @@
 
 <script>
 	export default {
+		props: ['logged_user'],
+		data() {
+			return {
 
+			}
+		}
 	}
 </script>

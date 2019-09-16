@@ -1919,7 +1919,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['logged_user'],
+  data: function data() {
+    return {};
+  }
+});
 
 /***/ }),
 
@@ -37264,102 +37275,129 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-8 pl-5" }, [
+        _c("div", { staticClass: "card mb-2" }, [
+          _c("div", { staticClass: "card-body" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control mb-1",
+              attrs: { type: "text", placeholder: "Title" }
+            }),
+            _vm._v(" "),
+            _c("textarea", {
+              staticClass: "form-control",
+              attrs: {
+                name: "",
+                id: "",
+                placeholder: "Text (optional)",
+                cols: "30",
+                rows: "5"
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "row mt-3" }, [
+              _c("div", { staticClass: "col-8" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4" }, [
+                _vm.logged_user
+                  ? _c("span", [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "float-right btn btn-sm btn-outline-light text-dark",
+                          attrs: { type: "button" }
+                        },
+                        [_vm._v("Save Draft")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "float-right btn btn-sm btn-success mr-2",
+                          attrs: { type: "button" }
+                        },
+                        [_vm._v("Post")]
+                      )
+                    ])
+                  : _c("span", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "float-right btn btn-sm btn-primary",
+                          attrs: { type: "button" }
+                        },
+                        [_vm._v("Login to Post")]
+                      )
+                    ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(1)
+      ]),
+      _vm._v(" "),
+      _vm._m(2)
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-8 pl-5" }, [
-          _c("div", { staticClass: "card mb-2" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "row text-center" }, [
-                _c("div", { staticClass: "col-4" }, [
-                  _c("p", {}, [
-                    _c("i", {
-                      staticClass: "fa fa-commenting-o",
-                      attrs: { "aria-hidden": "true" }
-                    }),
-                    _vm._v(" Post")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-4" }, [
-                  _c("p", [
-                    _c("i", {
-                      staticClass: "fa fa-picture-o",
-                      attrs: { "aria-hidden": "true" }
-                    }),
-                    _vm._v(" Image & Video")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-4" }, [
-                  _c("p", [
-                    _c("i", {
-                      staticClass: "fa fa-link",
-                      attrs: { "aria-hidden": "true" }
-                    }),
-                    _vm._v(" Link")
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control mb-1",
-                attrs: { type: "text", placeholder: "Title" }
-              }),
-              _vm._v(" "),
-              _c("textarea", {
-                staticClass: "form-control",
-                attrs: {
-                  name: "",
-                  id: "",
-                  placeholder: "Text (optional)",
-                  cols: "30",
-                  rows: "5"
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "row mt-3" }, [
-                _c("div", { staticClass: "col-8" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-4" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "float-right btn btn-sm btn-outline-success",
-                      attrs: { type: "button" }
-                    },
-                    [_vm._v("Save Draft")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "float-right btn btn-sm btn-success mr-2",
-                      attrs: { type: "button" }
-                    },
-                    [_vm._v("Post")]
-                  )
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card mb-2" }, [
-            _c("div", { staticClass: "card-body" })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-4 pr-5" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-body" })
-          ])
+    return _c("div", { staticClass: "row text-center" }, [
+      _c("div", { staticClass: "col-4" }, [
+        _c("p", {}, [
+          _c("i", {
+            staticClass: "fa fa-commenting-o",
+            attrs: { "aria-hidden": "true" }
+          }),
+          _vm._v(" Post")
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-4" }, [
+        _c("p", [
+          _c("i", {
+            staticClass: "fa fa-picture-o",
+            attrs: { "aria-hidden": "true" }
+          }),
+          _vm._v(" Image & Video")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-4" }, [
+        _c("p", [
+          _c("i", {
+            staticClass: "fa fa-link",
+            attrs: { "aria-hidden": "true" }
+          }),
+          _vm._v(" Link")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card mb-2" }, [
+      _c("div", { staticClass: "card-body" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-4 pr-5" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-body" })
       ])
     ])
   }
