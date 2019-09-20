@@ -16,7 +16,7 @@
 							</div>
 						</div>
 						<input type="text" class="form-control mb-1" placeholder="Title">
-						<textarea name="" id="" class="form-control" placeholder="Text (optional)" cols="30" rows="5"></textarea>
+						<vue-editor v-model="content" :editorToolbar="customToolbar"></vue-editor>
 						<div class="row mt-3">
 							<div class="col-8">
 								
@@ -53,11 +53,17 @@
 </template>	
 
 <script>
+	import { VueEditor } from "vue2-editor";
+
 	export default {
 		props: ['logged_user'],
+		components: {
+    	VueEditor
+		},
 		data() {
 			return {
-
+				content: "",
+				customToolbar: [["bold", "italic", "underline"], [{ list: "ordered" }, { list: "bullet" }], ["image", "code-block"]]
 			}
 		}
 	}
