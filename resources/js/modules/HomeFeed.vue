@@ -4,7 +4,7 @@
 			<div class="col-8 pl-5">
 				<div class="card mb-2">
 					<div class="card-body">
-						<div class="row text-center">
+						<!-- <div class="row text-center">
 							<div class="col-4">
 								<p class=""><i class="fa fa-commenting-o" aria-hidden="true"></i> Post</p>
 							</div>
@@ -14,9 +14,9 @@
 							<div class="col-4">
 								<p><i class="fa fa-link" aria-hidden="true"></i> Link</p>
 							</div>
-						</div>
+						</div> -->
 						<input type="text" class="form-control mb-1" placeholder="Title">
-						<vue-editor v-model="content" :editorToolbar="customToolbar"></vue-editor>
+						<vue-editor id="editor1" v-model="content" :editorToolbar="customToolbar"></vue-editor>
 						<div class="row mt-3">
 							<div class="col-8">
 								
@@ -68,3 +68,9 @@
 		}
 	}
 </script>
+
+<style>
+	#editor1 {
+		/*min-height: 120px;*/
+	}
+</style>
