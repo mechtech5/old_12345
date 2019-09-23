@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Jobportal;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Jobalert extends Model
+class Company extends Model
 {
     //
 }

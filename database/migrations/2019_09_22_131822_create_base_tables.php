@@ -15,7 +15,7 @@ class CreateBaseTables extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name', 100);
             $table->timestamps();
         });
 
@@ -23,6 +23,26 @@ class CreateBaseTables extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedInteger('mod_id');
+            $table->timestamps();
+        });
+
+        Schema::create('cities', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('state_id');
+            $table->string('name', 100);
+            $table->timestamps();
+        });
+
+        Schema::create('states', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('country_id');
+            $table->string('name', 100);
+            $table->timestamps();
+        });
+
+        Schema::create('countries', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 100);
             $table->timestamps();
         });
     }
@@ -36,5 +56,8 @@ class CreateBaseTables extends Migration
     {
         Schema::dropIfExists('modules');
         Schema::dropIfExists('module_user');
+        Schema::dropIfExists('cities');
+        Schema::dropIfExists('states');
+        Schema::dropIfExists('countries');
     }
 }

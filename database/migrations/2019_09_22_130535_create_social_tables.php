@@ -15,14 +15,14 @@ class CreateSocialTables extends Migration
     {
         Schema::create('social_activity_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name', 100);
             $table->timestamps();
         });
 
         Schema::create('social_activities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('type');
-            $table->string('name');
+            $table->string('name', 200);
             $table->text('description');
             $table->timestamps();
         });

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Base;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Hashtag extends Model
+class State extends Model
 {
     //
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Base;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Resume extends Model
+class ModuleUser extends Model
 {
     //
 }

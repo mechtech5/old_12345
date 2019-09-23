@@ -15,20 +15,20 @@ class CreateJobportalTables extends Migration
     {
         Schema::create('job_skills', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('title', 200);
             $table->timestamps();
         });
 
         Schema::create('job_companies', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('location_id');
-            $table->string('name');
+            $table->string('name', 200);
             $table->timestamps();
         });
 
         Schema::create('job_locations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('title', 100);
             $table->unsignedInteger('country_id');
             $table->unsignedInteger('state_id');
             $table->unsignedInteger('city_id');
@@ -39,7 +39,7 @@ class CreateJobportalTables extends Migration
         Schema::create('job_alerts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->string('title');
+            $table->string('title', 100);
             $table->text('keywords');
             $table->text('locations');
             $table->unsignedInteger('work_exp');
