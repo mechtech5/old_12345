@@ -13,6 +13,45 @@ class CreateDevsTables extends Migration
      */
     public function up()
     {
+        Schema::create('dev_profiles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->string('username', 16)->unique();
+            $table->string('tagline', 250)->nullable();
+            $table->text('image')->nullable();
+            $table->unsignedInteger('country_id');
+            $table->unsignedInteger('state_id')->default(0);
+            $table->unsignedInteger('city_id')->default(0);
+            $table->unsignedInteger('top_lang')->nullable();
+            $table->unsignedInteger('top_framework')->nullable();
+            $table->string('website_url', 200)->nullable();
+
+            /*  Education
+                Current Employer Name
+                Current Employer URL
+                Current Employement Title
+             */
+            $table->text('edu_texts')->nullable();
+            $table->text('emp_texts')->nullable();
+
+            // booleans
+            $table->boolean('display_email')->default(0);
+            $table->boolean('is_work_avail')->default(0);
+            $table->boolean('display_work_avail')->default(0);
+
+            /* skills/languages = What tools and languages are you most experienced with? are you specialized or more of a generalist?
+                i'm getting into = what are you learning right now? what are the new tools nand languages you're picking up in {year}?
+                my projects and hacks = What projects are currently occupying most of your time?
+                available for = What kinds of collaborations or discussions are you available for? what's a good reason to say hey to you these days?
+            */
+            $table->text('bio_texts')->nullable(); // json key-value
+
+            /* facebook, twitter, behance, dribbble, stackoverflow, linkedin, medium, gitlab, mastodon, twitch, youtube, instagram*/
+            $table->text('social_links')->nullable(); // json key-value
+
+            $table->timestamps();
+        });
+
         Schema::create('dev_tool_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100);
@@ -22,7 +61,7 @@ class CreateDevsTables extends Migration
         Schema::create('dev_tools', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 200);
-            $table->unsignedInteger('type');
+            $table->unsignedInteger('type_id'); // from dev_tool_types
             $table->text('description')->nullable();
             $table->integer('dev_count')->default(0);
             $table->timestamps();
@@ -35,19 +74,27 @@ class CreateDevsTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('dev_profiles', function (Blueprint $table) {
+        Schema::create('dev_teams', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('location_id');
-            $table->unsignedInteger('top_lang')->nullable();
-            $table->unsignedInteger('top_framework')->nullable();
+            $table->string('name', 100);
+            $table->string('tagline', 250);
+            $table->text('description')->nullable();
             $table->timestamps();
         });
 
-        Schema::create('dev_teams', function (Blueprint $table) {
+        Schema::create('dev_groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('creator_id');
-            $table->unsignedInteger('main_interest');
+            $table->string('name', 100);
+            $table->string('tagline', 250);
+            $table->text('description')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('dev_communities', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 100);
+            $table->string('tagline', 250);
+            $table->text('description')->nullable();
             $table->timestamps();
         });
 
