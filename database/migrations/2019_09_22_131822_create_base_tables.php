@@ -13,24 +13,24 @@ class CreateBaseTables extends Migration
      */
     public function up()
     {
-        Schema::create('modules', function (Blueprint $table) {
+        Schema::create('base_modules', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100);
         });
 
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('base_cities', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('state_id');
             $table->string('name', 100);
         });
 
-        Schema::create('states', function (Blueprint $table) {
+        Schema::create('base_states', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('country_id');
             $table->string('name', 100);
         });
 
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('base_countries', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100);
         });
@@ -57,10 +57,11 @@ class CreateBaseTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modules');
-        Schema::dropIfExists('module_user');
-        Schema::dropIfExists('cities');
-        Schema::dropIfExists('states');
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('base_modules');
+        Schema::dropIfExists('base_cities');
+        Schema::dropIfExists('base_states');
+        Schema::dropIfExists('base_countries');
+        Schema::dropIfExists('wallet');
+        Schema::dropIfExists('wallet_transactions');
     }
 }

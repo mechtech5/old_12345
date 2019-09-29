@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Social;
 
 use App\Http\Controllers\Controller;
 use App\Models\Social\Post;
-use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
 	public function __construct()
   {
-    $this->middleware('auth');
+    $this->middleware('auth:api');
   }
 
   public function index()

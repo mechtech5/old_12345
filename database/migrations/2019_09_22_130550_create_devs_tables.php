@@ -13,15 +13,18 @@ class CreateDevsTables extends Migration
      */
     public function up()
     {
-        Schema::create('dev_profiles', function (Blueprint $table) {
+        Schema::create('user_profiles', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('username', 16)->unique();
             $table->string('tagline', 250)->nullable();
-            $table->text('image')->nullable();
+            $table->text('avatar')->nullable();
             $table->unsignedInteger('country_id');
             $table->unsignedInteger('state_id')->default(0);
             $table->unsignedInteger('city_id')->default(0);
+
+            // Dev Profile
+            $table->string('dev_tagline', 250)->nullable();
             $table->unsignedInteger('top_lang')->nullable();
             $table->unsignedInteger('top_framework')->nullable();
             $table->string('website_url', 200)->nullable();

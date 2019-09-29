@@ -1,23 +1,30 @@
 <?php
 
-use App\Models\Social\Post;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-		$posts = Post::all();
-    return view('welcome', compact('posts')) ;
-});
-
 Auth::routes();
 
+Route::get('/', 'MainController@index');
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Auth'], function() {
+	Route::resource('/users', 'UsersController');
+	Route::resource('/roles', 'RolesController');
+	Route::resource('/permissions', 'PermissionsController');
+});
+
+Route::group(['namespace' => 'WEB\Base'], function() {
+	Route::get('/profile', 'ProfileController@index');
+	Route::get('/profile/setup', 'ProfileController@setup');
+	Route::get('/wallet', 'WalletController@index');
+});
+
+Route::group(['prefix' => 'dev', 'namespace' => 'Dev'], function() {
+	
+});
+
+Route::group(['prefix' => 'jobs', 'namespace' => 'Job'], function() {
+	
+});
+
+Route::group(['prefix' => 'social', 'namespace' => 'Social'], function() {
+	
+});
