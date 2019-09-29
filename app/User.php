@@ -37,4 +37,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+  // Social
+  public function social_posts()
+  {
+    return $this->hasMany('App\Social\Post');
+  }
+
+  public function social_comments()
+  {
+    return $this->hasMany('App\Social\Comment');
+  }
+
 }

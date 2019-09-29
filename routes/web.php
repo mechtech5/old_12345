@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Social\Post;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +14,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+		$posts = Post::all();
+    return view('welcome', compact('posts')) ;
 });
 
 Auth::routes();

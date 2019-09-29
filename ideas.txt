@@ -22,3 +22,16 @@ locations
 	'designations' =>
 	'schools' =>
 }
+
+about (free)
+about premium page (paid)
+
+/domain (free)
+subdomain (paid)
+
+pay by real money
+pay by jigsawme wallet
+
+global sitewide wallet, earn by activity 
+15,3 (decimal)
+earn by likes , comments, etc

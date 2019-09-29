@@ -26,15 +26,15 @@ class CreateJobportalTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('job_locations', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('title', 100);
-            $table->unsignedInteger('country_id');
-            $table->unsignedInteger('state_id');
-            $table->unsignedInteger('city_id');
-            $table->text('description')->nullable();
-            $table->timestamps();
-        });
+        // Schema::create('job_locations', function (Blueprint $table) {
+        //     $table->bigIncrements('id');
+        //     $table->string('title', 100);
+        //     $table->unsignedInteger('country_id');
+        //     $table->unsignedInteger('state_id');
+        //     $table->unsignedInteger('city_id');
+        //     $table->text('description')->nullable();
+        //     $table->timestamps();
+        // });
 
         Schema::create('job_alerts', function (Blueprint $table) {
             $table->bigIncrements('id');

@@ -33,14 +33,14 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Left Side Of Navbar -->
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <select name="" id="" class="form-control">
                 <option value=""><i class="fa fa-eye" aria-hidden="true"></i> Home</option>
               </select>
-            </li>
-            <li class="nav-item">
+            </li> --}}
+            {{-- <li class="nav-item">
               <input type="text" class="form-control">
-            </li>
+            </li> --}}
           </ul>
 
           <!-- Right Side Of Navbar -->

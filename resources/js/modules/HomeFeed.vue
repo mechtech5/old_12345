@@ -15,11 +15,10 @@
 								<p><i class="fa fa-link" aria-hidden="true"></i> Link</p>
 							</div>
 						</div> -->
-						<input type="text" class="form-control mb-1" placeholder="Title">
-						<vue-editor id="editor1" v-model="content" :editorToolbar="customToolbar"></vue-editor>
+						<input type="text" class="form-control mb-1" v-model="post.title" placeholder="Title">
+						<vue-editor v-model="post.body" :editorToolbar="customToolbar"></vue-editor>
 						<div class="row mt-3">
 							<div class="col-8">
-								
 							</div>
 							<div class="col-4">
 								<span v-if="logged_user">
@@ -56,21 +55,41 @@
 	import { VueEditor } from "vue2-editor";
 
 	export default {
-		props: ['logged_user'],
+		props: ['logged_user', 'posts'],
 		components: {
     	VueEditor
 		},
 		data() {
 			return {
+				feed: [],
+				post: this.emptyPostForm(),
 				content: "",
-				customToolbar: [["bold", "italic", "underline"], [{ list: "ordered" }, { list: "bullet" }], ["image", "code-block"]]
+				customToolbar: [["bold", "italic", "underline"], [{ list: "ordered" }, { list: "bullet" }], ["code-block"]]
+			}
+		},
+		mounted() {
+			this.posts = this.feed;
+		},
+		methods: {
+			emptyPostForm() {
+				return {
+					'title': '',
+					'body': ''
+				}
+			},
+			index(){
+				axios.post('/api/social/posts', {
+
+				}).then(response => {
+
+				}).catch(error => console.log(error.response.data));
 			}
 		}
 	}
 </script>
 
-<style>
-	#editor1 {
-		/*min-height: 120px;*/
+<style scoped>
+	.ql-editor{
+		height: 80px !important;
 	}
 </style>
