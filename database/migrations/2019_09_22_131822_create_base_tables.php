@@ -6,62 +6,36 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateBaseTables extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('base_modules', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 100);
-        });
+  public function up()
+  {
+    Schema::create('user_profile_basic', function (Blueprint $table) {
+        $table->unsignedBigInteger('user_id')->primary();
+        $table->string('name', 150)->nullable();
+        $table->string('bio', 250)->nullable();
+        $table->text('avatar')->nullable();
+        $table->date('dob')->nullable();
+        $table->char('gender', 1)->nullable();
+        $table->timestamps();
+      });
 
-        Schema::create('base_cities', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('state_id');
-            $table->string('name', 100);
-        });
+      Schema::create('wallet', function (Blueprint $table) {
+          $table->unsignedBigInteger('user_id')->primary();
+          $table->decimal('bal', 15, 3)->default(0.000);
+          $table->timestamps();
+      });
 
-        Schema::create('base_states', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('country_id');
-            $table->string('name', 100);
-        });
+      Schema::create('wallet_transactions', function (Blueprint $table) {
+          $table->bigIncrements('id');
+          $table->unsignedBigInteger('wallet_id');
+          $table->char('trans_type', 1);
+          $table->datetime('trans_dt');
+      });
+  }
 
-        Schema::create('base_countries', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 100);
-        });
-
-        Schema::create('wallet', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
-            $table->decimal('bal', 15, 3)->default(0.000);
-            $table->timestamps();
-        });
-
-        Schema::create('wallet_transactions', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('wallet_id');
-            $table->char('trans_type', 1);
-            $table->datetime('trans_dt');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('base_modules');
-        Schema::dropIfExists('base_cities');
-        Schema::dropIfExists('base_states');
-        Schema::dropIfExists('base_countries');
-        Schema::dropIfExists('wallet');
-        Schema::dropIfExists('wallet_transactions');
-    }
+  public function down()
+  {
+      Schema::dropIfExists('user_profile_basic');
+      Schema::dropIfExists('wallet');
+      Schema::dropIfExists('wallet_transactions');
+  }
 }

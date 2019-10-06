@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,9 +14,9 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
       User::create([
-      	'name' => 'Ayush Likhar',
+      	'username' => 'mechtech5',
       	'email' => 'ayush.likhar@outlook.com',
-      	'password' => bcrypt('mechtech5'),
+      	'password' => Hash::make('laxyo123'),
       	'created_at' => now(),
       	'updated_at' => now()
       ]);
