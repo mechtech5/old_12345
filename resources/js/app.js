@@ -17,7 +17,9 @@ Vue.component(
     require('./components/passport/PersonalAccessTokens.vue').default
 );
 
-Vue.component('home-feed', require('./components/HomeFeed.vue').default);
+Vue.component('feed-component', require('./components/Feed.vue').default);
+Vue.component('home-component', require('./components/Home.vue').default);
+Vue.component('profile-component', require('./components/Profile.vue').default);
 
 
 

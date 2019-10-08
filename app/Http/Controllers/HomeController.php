@@ -12,6 +12,12 @@ class HomeController extends Controller
 
   public function index()
   {
-    return view('home');
+    return view('vue-pages.home');
   }
+
+  public function profile()
+	{
+		return view('vue-pages.profile');
+	}
+
 }
