@@ -10,11 +10,11 @@ class CreateBaseTables extends Migration
   {
     Schema::create('user_profile_basic', function (Blueprint $table) {
         $table->unsignedBigInteger('user_id')->primary();
-        $table->string('name', 150)->nullable();
+        $table->string('fname', 100)->nullable();
+        $table->string('lname', 100)->nullable();
         $table->string('bio', 250)->nullable();
         $table->text('avatar')->nullable();
         $table->date('dob')->nullable();
-        $table->char('gender', 1)->nullable();
         $table->timestamps();
       });
 

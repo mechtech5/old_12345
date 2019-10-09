@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-  <div class="row justify-content-center">
+
+	<div class="container-fluid">
 	  <profile-component :logged_user="{{ json_encode(auth()->user()) }}" 
-	  	></profile-component>
-  </div>
-</div>
+  	></profile-component>
+	</div>
+
 @endsection
