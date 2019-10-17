@@ -68,7 +68,7 @@
 			}
 		},
 		mounted() {
-			this.posts = this.feed;
+			// this.posts = this.feed;
 		},
 		methods: {
 			emptyPostForm() {
@@ -77,13 +77,13 @@
 					'body': ''
 				}
 			},
-			index(){
-				axios.post('/api/social/posts', {
+			// index(){
+			// 	axios.post('/api/social/posts', {
 
-				}).then(response => {
+			// 	}).then(response => {
 
-				}).catch(error => console.log(error.response.data));
-			}
+			// 	}).catch(error => console.log(error.response.data));
+			// }
 		}
 	}
 </script>

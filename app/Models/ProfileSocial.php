@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models\Dev;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tool extends Model
+class ProfileSocial extends Model
 {
     //
 }

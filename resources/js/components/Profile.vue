@@ -4,10 +4,10 @@
 			<div class="list-group">
 				<a href="#" class="list-group-item list-group-item-action text-center">My Profile</a>
 			  <button type="button" class="list-group-item list-group-item-action active">Social Info</button>
-			  <button type="button" class="list-group-item list-group-item-action" disabled>Author Info</button>
-			  <button type="button" class="list-group-item list-group-item-action" disabled>Dev Info</button>
-			  <button type="button" class="list-group-item list-group-item-action" disabled>Job Info</button>
-			  <button type="button" class="list-group-item list-group-item-action" disabled>Gamer Info</button>
+			  <!-- <button type="button" class="list-group-item list-group-item-action" disabled>Author Info</button> -->
+			  <button type="button" class="list-group-item list-group-item-action">Dev Info</button>
+<!-- 			  <button type="button" class="list-group-item list-group-item-action" disabled>Job Info</button>
+			  <button type="button" class="list-group-item list-group-item-action" disabled>Gamer Info</button> -->
 			</div>
 		</div>
 		<div class="col-6 text-center">

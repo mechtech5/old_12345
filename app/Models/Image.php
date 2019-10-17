@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models\Dev;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Toolset extends Model
+class Image extends Model
 {
     //
 }

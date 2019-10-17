@@ -1910,8 +1910,7 @@ __webpack_require__.r(__webpack_exports__);
       }], ["code-block"]]
     };
   },
-  mounted: function mounted() {
-    this.posts = this.feed;
+  mounted: function mounted() {// this.posts = this.feed;
   },
   methods: {
     emptyPostForm: function emptyPostForm() {
@@ -1919,12 +1918,12 @@ __webpack_require__.r(__webpack_exports__);
         'title': '',
         'body': ''
       };
-    },
-    index: function index() {
-      axios.post('/api/social/posts', {}).then(function (response) {})["catch"](function (error) {
-        return console.log(error.response.data);
-      });
-    }
+    } // index(){
+    // 	axios.post('/api/social/posts', {
+    // 	}).then(response => {
+    // 	}).catch(error => console.log(error.response.data));
+    // }
+
   }
 });
 
@@ -57460,36 +57459,9 @@ var staticRenderFns = [
           "button",
           {
             staticClass: "list-group-item list-group-item-action",
-            attrs: { type: "button", disabled: "" }
-          },
-          [_vm._v("Author Info")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "list-group-item list-group-item-action",
-            attrs: { type: "button", disabled: "" }
+            attrs: { type: "button" }
           },
           [_vm._v("Dev Info")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "list-group-item list-group-item-action",
-            attrs: { type: "button", disabled: "" }
-          },
-          [_vm._v("Job Info")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "list-group-item list-group-item-action",
-            attrs: { type: "button", disabled: "" }
-          },
-          [_vm._v("Gamer Info")]
         )
       ])
     ])
