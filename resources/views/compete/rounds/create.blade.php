@@ -3,7 +3,6 @@
 @section('content')
 	<form action="{{ route('rounds.store') }}" method="POST">
 		@csrf
-		<input type="hidden" name="p1" value="{{ auth()->user()->id }}">
 		<input type="text" name="title" placeholder="title">
 		<input type="number" name="no_of_ques" placeholder="no_of_ques">
 		<input type="number" name="marks_per_ques" placeholder="marks_per_ques">

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Round extends Model
 {
 	protected $table = 'cpt_rounds';
-	protected $fillable = ['title', 'no_of_ques', 'marks_per_ques'];
+	protected $fillable = ['title', 'p1', 'no_of_ques', 'marks_per_ques', 'invite_code'];
 
   public function details()
   {

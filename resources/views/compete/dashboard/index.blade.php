@@ -9,10 +9,38 @@
 			<input type="submit">
 		</form>
 
-		<div class="card">
-			<div class="card-body">
-				
+		<div class="row">
+			<div class="col-4">
+				<div class="card">
+					<div class="card-header">Standby Rounds</div>
+					<div class="card-body">
+						@foreach($standby as $row)
+							<a href="{{ route('rounds.show', $row->id) }}">{{ $row->title }}</a>
+						@endforeach
+					</div>
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="card">
+					<div class="card-header">Ongoing Rounds</div>
+					<div class="card-body">
+						@foreach($ongoing as $row)
+							<a href="{{ route('rounds.show', $row->id) }}">{{ $row->title }}</a>
+						@endforeach
+					</div>
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="card">
+					<div class="card-header">Played Rounds</div>
+					<div class="card-body">
+						@foreach($played as $row)
+							<a href="{{ route('rounds.show', $row->id) }}">{{ $row->title }}</a>
+						@endforeach
+					</div>
+				</div>
 			</div>
 		</div>
+
 	</div>
 @endsection

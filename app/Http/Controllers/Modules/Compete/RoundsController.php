@@ -21,6 +21,7 @@ class RoundsController extends Controller
 
   	$round = Round::where('invite_code', $vdata['invite_code'])
   		->where('started', 0)->where('ended', 0)->first();
+      
   	if($round && $round->p1 != auth()->user()->id)
   	{
 	  	$round->p2 = auth()->user()->id;
@@ -44,23 +45,28 @@ class RoundsController extends Controller
   public function store()
   {
     $vdata = request()->validate([
-      'p1' => 'required',
       'title' => 'required',
       'no_of_ques' => 'required',
       'marks_per_ques' => 'required'
     ]);
 
-    $round = Round::create($vdata);
+    $round = Round::create([
+      'p1' => auth()->user()->id,
+      'title' => $vdata['title'],
+      'no_of_ques' => $vdata['no_of_ques'],
+      'marks_per_ques' => $vdata['marks_per_ques'],
+      'invite_code' => substr(sha1(time()), 0, 10)
+    ]);
 
-    return redirect(route('rounds.show', $round))->with('status', 'Generated Invite Code is '.$round->invite_code);
+    return redirect(route('rounds.show', $round));
   }
 
   public function show($id)
   {
     $round = Round::with('details')->where('id', $id)->first();
   	$user_id = auth()->user()->id;
-  	$p1 = User::findOrFail($round->p1);
-  	$p2 = User::findOrFail($round->p2);
+  	$p1 = User::find($round->p1);
+  	$p2 = User::find($round->p2);
   	if($round->p1 == $user_id)
   	{
   		return view('compete.rounds.show', [

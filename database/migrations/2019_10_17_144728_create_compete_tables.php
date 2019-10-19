@@ -13,20 +13,13 @@ class CreateCompeteTables extends Migration
      */
     public function up()
     {
-        Schema::create('cpt_questions', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('creator_id');
-            $table->text('body');
-            $table->text('solution')->nullable();
-            $table->timestamps();
-        });
-
         Schema::create('cpt_rounds', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title');
             $table->unsignedBigInteger('p1');
             $table->unsignedBigInteger('p2')->nullable();
-            $table->decimal('p1_score', 4, 1)->default(0.0);
-            $table->decimal('p2_score', 4, 1)->default(0.0);
+            $table->decimal('p1_score', 4, 1)->nullable();
+            $table->decimal('p2_score', 4, 1)->nullable();
             $table->decimal('no_of_ques', 3, 1);
             $table->decimal('marks_per_ques', 3, 1);
             $table->string('invite_code', 10);
@@ -38,11 +31,13 @@ class CreateCompeteTables extends Migration
         Schema::create('cpt_round_details', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('round_id');
-            $table->unsignedBigInteger('p_id');
-            $table->unsignedBigInteger('ques_id');
+            $table->unsignedBigInteger('asker_id');
+            $table->unsignedBigInteger('responder_id')->nullable();
+            $table->text('question');
             $table->text('response')->nullable();
+            $table->text('solution')->nullable();
             $table->boolean('skipped')->default(false);
-            $table->decimal('marks', 3, 1)->default(0.0);
+            $table->decimal('marks', 3, 1)->nullable();
             $table->timestamps();
         });
     }
@@ -54,7 +49,6 @@ class CreateCompeteTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cpt_questions');
         Schema::dropIfExists('cpt_rounds');
         Schema::dropIfExists('cpt_round_details');
     }
