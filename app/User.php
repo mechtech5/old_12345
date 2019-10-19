@@ -39,5 +39,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // Compete Relations
+    public function questions()
+    {
+        return $this->hasMany('App\Models\Compete\RoundDetail', 'creator_id');
+    }
+
+    public function responses()
+    {
+        return $this->hasMany('App\Models\Compete\RoundDetail', 'responder_id');
+    }
     
 }
