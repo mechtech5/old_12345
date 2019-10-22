@@ -1,15 +1,25 @@
 @extends('layouts.app')
 
+@push('styles')
+	<style>
+		body {
+			font-family: 'Monaco';
+		}
+	</style>
+@endpush
+
 @section('content')
 	<div class="container-fluid" style="background: transparent;">
 		@isset($status)
-			<div class="alert alert-info">{{ $status }}</div>
+			{{-- <div class="alert alert-info">{{ $status }}</div> --}}
 		@endisset
 
 		<div class="card">
 			<div class="card-header">
-		    {{ $round->title }} | {{ $p1->username }} vs @isset($p2) {{ $p2->username }} @endisset |
-		    <span class="float-right">{{ $round->invite_code }}</span>
+		    Round: <b>{{ $round->title }}</b> <br>
+		    Player1: <b>{{ $p1->username }}</b> <br>
+		    Player2: <b>@isset($p2) {{ $p2->username }}</b> @endisset
+		    <span class="float-right">Code: {{ $round->invite_code }}</span>
 		  </div>
 
 			<div class="card-body">
@@ -18,8 +28,13 @@
 						<form action="{{ route('round_details.store') }}" method="POST">
 							@csrf
 							<input type="hidden" name="round_id" value="{{ $round->id }}">
-							<textarea class="form-control" name="question" id="" cols="30" rows="5"></textarea>
-							<input type="submit">
+							<div class="form-group">
+								<textarea class="form-control" name="question" id="" cols="30" rows="5" placeholder="Place a new question for opponent. Make sure it's a tough one :D"></textarea>
+							</div>
+							<div class="form-group">
+								<input class="btn btn-primary" type="submit">
+							</div>
+							
 						</form>
 					</div>
 
