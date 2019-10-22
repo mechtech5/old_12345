@@ -2,8 +2,9 @@
 
 Auth::routes();
 
-Route::domain('compete.jigsawme.in')->group(function () {
+Route::domain('compete.localhost')->group(function () {
 	Route::get('/', 'Modules\Compete\DashboardController@index')->name('compete.dashboard.index');
+	Route::get('/home', 'Modules\Compete\DashboardController@home')->name('compete.dashboard.home');
 	Route::resource('/rounds', 'Modules\Compete\RoundsController');
 	Route::post('/rounds/join', 'Modules\Compete\RoundsController@join')->name('rounds.join');
 	Route::resource('/round_details', 'Modules\Compete\RoundDetailsController');
