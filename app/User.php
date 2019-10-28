@@ -7,10 +7,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use Notifiable, HasRoles, HasApiTokens;
+    use Notifiable, HasRoles, HasApiTokens, HasMediaTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -38,6 +40,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function articles()
+    {
+        return $this->hasMany('App\Models\Article');
+    }
 
     // Compete Relations
     public function questions()
