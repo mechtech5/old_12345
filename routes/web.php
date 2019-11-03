@@ -2,7 +2,7 @@
 
 Auth::routes();
 
-Route::domain('compete.localhost')->namespace('Modules\Compete')->group(function () {
+Route::domain('compete.localhost')->namespace('Compete')->group(function () {
 	Route::get('/', 'DashboardController@index')->name('compete.dashboard.index');
 	Route::get('/home', 'DashboardController@home')->name('compete.dashboard.home');
 	Route::resource('/rounds', 'RoundsController');
@@ -10,24 +10,21 @@ Route::domain('compete.localhost')->namespace('Modules\Compete')->group(function
 	Route::resource('/round_details', 'RoundDetailsController');
 });
 
-Route::domain('ayushiblogs.localhost')->name('ayushiblogs.')->namespace('Modules\Ayushiblogs')->group(function () {
-	Route::get('/', 'MainController@index')->name('welcome');
-	Route::get('/home', 'MainController@home')->name('home');
-
-	Route::get('/article/{article_id}/{slug}', 'ArticlesController@view')
-		->name('ayushiblogs.article.view');
-
-	Route::resource('/articles', 'ArticlesController');
-	Route::resource('/comments', 'ArticlesController');
+Route::domain('ayushiblogs.localhost')->name('ayushiblogs.')->namespace('Ayushiblogs')->group(function () {
+	Route::get('/', 'BlogController@index')->name('index');
+	Route::get('/post/{slug}', 'BlogController@show')->name('show');
+	Route::get('/contact', 'BlogController@contact')->name('contact');
+	Route::get('/about', 'BlogController@about')->name('about');
+	Route::get('/topics', 'BlogController@topics')->name('topics');
 });
 
 Route::get('/', 'WelcomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'HomeController@profile')->name('profile');
 
-Route::resource('/articles', 'ArticlesController');
-Route::resource('/comments', 'CommentsController');
-Route::resource('/tags', 'TagsController');
+Route::resource('/article', 'ArticlesController');
+Route::resource('/comment', 'CommentsController');
+Route::resource('/tag', 'TagsController');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Auth'], function() {
 	Route::resource('/users', 'UsersController');
