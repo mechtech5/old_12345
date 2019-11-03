@@ -4,6 +4,7 @@
     <title></title>
     
     @include('partials._wordify.head')
+    
   </head>
 
   <body>
@@ -18,54 +19,27 @@
             <div class="col-md-12">
 
               <div class="owl-carousel owl-theme home-slider">
+                @foreach($random_posts as $post)
                 <div>
-                  <a href="blog-single.html" class="a-block d-flex align-items-center height-lg" style="background-image: url('images/img_1.jpg'); ">
+                  <a href="{{ route('ayushiblogs.show', $post->slug) }}" class="a-block d-flex align-items-center height-lg" style="background-image: url('{{ $post->featured_image }}'); ">
                     <div class="text half-to-full">
-                      <span class="category mb-5">Food</span>
+                      @foreach($post->tags as $tag)
+                        <span class="category mb-5">{{$tag->name}}</span>
+                      @endforeach  
                       <div class="post-meta">
                         
-                        <span class="author mr-2"><img src="images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
+                        {{-- <span class="author mr-2"><img src="images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet; --}}
+                        <span class="mr-2">{{$post->publish_date->format('F d, Y')}} </span> 
+                        {{-- &bullet; --}}
+                        {{-- <span class="ml-2"><span class="fa fa-comments"></span> 3</span> --}}
                         
                       </div>
-                      <h3>How to Find the Video Games of Your Youth</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem nobis, ut dicta eaque ipsa laudantium!</p>
+                      <h3>{{$post->title}}</h3>
+                      <p>{{$post->excerpt}}</p>
                     </div>
                   </a>
                 </div>
-                <div>
-                  <a href="blog-single.html" class="a-block d-flex align-items-center height-lg" style="background-image: url('images/img_2.jpg'); ">
-                    <div class="text half-to-full">
-                      <span class="category mb-5">Travel</span>
-                      <div class="post-meta">
-                        
-                        <span class="author mr-2"><img src="images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                        
-                      </div>
-                      <h3>How to Find the Video Games of Your Youth</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem nobis, ut dicta eaque ipsa laudantium!</p>
-                    </div>
-                  </a>
-                </div>
-                <div>
-                  <a href="blog-single.html" class="a-block d-flex align-items-center height-lg" style="background-image: url('images/img_3.jpg'); ">
-                    <div class="text half-to-full">
-                      <span class="category mb-5">Sports</span>
-                      <div class="post-meta">
-                        
-                        <span class="author mr-2"><img src="images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                        
-                      </div>
-                      <h3>How to Find the Video Games of Your Youth</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem nobis, ut dicta eaque ipsa laudantium!</p>
-                    </div>
-                  </a>
-                </div>
+                @endforeach
               </div>
               
             </div>
@@ -105,7 +79,7 @@
                 @endforeach
               </div>
 
-              <div class="row mt-5">
+              {{-- <div class="row mt-5">
                 <div class="col-md-12 text-center">
                   <nav aria-label="Page navigation" class="text-center">
                     <ul class="pagination">
@@ -119,33 +93,27 @@
                     </ul>
                   </nav>
                 </div>
-              </div>
-
-
-              
-
-              
-
+              </div> --}}
             </div>
 
             <!-- END main-content -->
 
             <div class="col-md-12 col-lg-4 sidebar">
-              <div class="sidebar-box search-form-wrap">
+              {{-- <div class="sidebar-box search-form-wrap">
                 <form action="#" class="search-form">
                   <div class="form-group">
                     <span class="icon fa fa-search"></span>
                     <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
                   </div>
                 </form>
-              </div>
+              </div> --}}
               <!-- END sidebar-box -->
               <div class="sidebar-box">
                 <div class="bio text-center">
-                  <img src="images/person_1.jpg" alt="Image Placeholder" class="img-fluid">
+                  <img src="{{ $author->avatar }}" alt="Image Placeholder" class="img-fluid">
                   <div class="bio-body">
-                    <h2>David Craig</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
+                    <h2>{{ $author->name }}</h2>
+                    <p>{!! $author->bio !!}</p>
                     <p><a href="#" class="btn btn-primary btn-sm rounded">Read my bio</a></p>
                     <p class="social">
                       <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
@@ -157,49 +125,29 @@
                 </div>
               </div>
               <!-- END sidebar-box -->  
-              <div class="sidebar-box">
+              {{-- <div class="sidebar-box">
                 <h3 class="heading">Popular Posts</h3>
                 <div class="post-entry-sidebar">
                   <ul>
+                    @foreach($random_posts as $post)
                     <li>
                       <a href="">
-                        <img src="images/img_2.jpg" alt="Image placeholder" class="mr-4">
+                        <img src="{{ $post->featured_image }}" alt="Image placeholder" class="mr-4">
                         <div class="text">
-                          <h4>How to Find the Video Games of Your Youth</h4>
+                          <h4>{{ $post->title }}</h4>
                           <div class="post-meta">
-                            <span class="mr-2">March 15, 2018 </span>
+                            <span class="mr-2">{{$post->publish_date->format('F d, Y')}} </span>
                           </div>
                         </div>
                       </a>
                     </li>
-                    <li>
-                      <a href="">
-                        <img src="images/img_4.jpg" alt="Image placeholder" class="mr-4">
-                        <div class="text">
-                          <h4>How to Find the Video Games of Your Youth</h4>
-                          <div class="post-meta">
-                            <span class="mr-2">March 15, 2018 </span>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src="images/img_12.jpg" alt="Image placeholder" class="mr-4">
-                        <div class="text">
-                          <h4>How to Find the Video Games of Your Youth</h4>
-                          <div class="post-meta">
-                            <span class="mr-2">March 15, 2018 </span>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
+                    @endforeach
                   </ul>
                 </div>
-              </div>
+              </div> --}}
               <!-- END sidebar-box -->
 
-              <div class="sidebar-box">
+              {{-- <div class="sidebar-box">
                 <h3 class="heading">Categories</h3>
                 <ul class="categories">
                   <li><a href="#">Food <span>(12)</span></a></li>
@@ -208,24 +156,15 @@
                   <li><a href="#">Business <span>(42)</span></a></li>
                   <li><a href="#">Adventure <span>(14)</span></a></li>
                 </ul>
-              </div>
+              </div> --}}
               <!-- END sidebar-box -->
 
               <div class="sidebar-box">
                 <h3 class="heading">Tags</h3>
                 <ul class="tags">
-                  <li><a href="#">Travel</a></li>
-                  <li><a href="#">Adventure</a></li>
-                  <li><a href="#">Food</a></li>
-                  <li><a href="#">Lifestyle</a></li>
-                  <li><a href="#">Business</a></li>
-                  <li><a href="#">Freelancing</a></li>
-                  <li><a href="#">Travel</a></li>
-                  <li><a href="#">Adventure</a></li>
-                  <li><a href="#">Food</a></li>
-                  <li><a href="#">Lifestyle</a></li>
-                  <li><a href="#">Business</a></li>
-                  <li><a href="#">Freelancing</a></li>
+                  @foreach($tags as $tag)
+                    <li><a href="#">{{ $tag->name }}</a></li>
+                  @endforeach
                 </ul>
               </div>
             </div>

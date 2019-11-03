@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Ayushiblogs;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Wink\WinkAuthor;
 use Wink\WinkPost;
+use Wink\WinkTag;
 
 class BlogController extends Controller
 {
@@ -12,18 +14,40 @@ class BlogController extends Controller
     {
         $posts = WinkPost::with('tags')
             ->live()
-            ->orderBy('publish_date', 'DESC')
-            ->simplePaginate(12);
+            ->latest('publish_date')
+            ->get();
+            // ->simplePaginate(12);
+
+        $author = WinkAuthor::where('slug', 'ayushi-likhar')->first();   
+        $tags = WinkTag::get()->random(3);
 
         return view('ayushiblogs.index', [
-            'posts' => $posts
+            'posts' => $posts,
+            'latest_posts' => $posts->take(3),
+            'random_posts' => $posts->random(3),
+            'author' => $author,
+            'tags' => $tags,
         ]);
     }
 
     public function show($slug)
     {
+        $posts = WinkPost::with('tags')
+            ->live()
+            ->latest('publish_date')
+            ->get();
+
+        $author = WinkAuthor::where('slug', 'ayushi-likhar')->first();   
+        $tags = WinkTag::get()->random(3);
+
         $post = WinkPost::with('tags')->where('slug', $slug)->first();
-        return view('ayushiblogs.show', ['post' => $post]);
+        return view('ayushiblogs.show', [
+            'post' => $post,
+            'author' => $author,
+            'latest_posts' => $posts->take(3),
+            'random_posts' => $posts->random(3),
+            'tags' => $tags,
+        ]);
     }
 
     public function contact()
@@ -36,7 +60,7 @@ class BlogController extends Controller
         //
     }
 
-    public function topics()
+    public function network()
     {
         //
     }
