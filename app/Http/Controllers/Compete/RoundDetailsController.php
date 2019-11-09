@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Modules\Compete;
+namespace App\Http\Controllers\Compete;
 
 use App\Http\Controllers\Controller;
 use App\Models\Compete\Round;

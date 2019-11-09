@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ayushiblogs;
 
 use App\Http\Controllers\Controller;
+use App\Models\Visitor;
 use Illuminate\Http\Request;
 use Wink\WinkAuthor;
 use Wink\WinkPost;
@@ -41,6 +42,10 @@ class BlogController extends Controller
         $tags = WinkTag::get()->random(3);
 
         $post = WinkPost::with('tags')->where('slug', $slug)->first();
+
+        $visitor = new Visitor;
+        $visitor->log();
+
         return view('ayushiblogs.show', [
             'post' => $post,
             'author' => $author,

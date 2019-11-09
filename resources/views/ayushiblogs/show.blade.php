@@ -1,22 +1,27 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title></title>
+    <title>AyushiBlogs | {{ $post->title }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @include('partials._wordify.head')
+    @include('includes._wordify.head')
     <style>
       .embedded_image img{
         height: auto;
         max-width: 100%;
       }
+      @media only screen and (max-width: 991px) {
+        .sidebar {
+          margin-top: 50px;
+        }
+      }
     </style>
+
   </head>
 
   <body>
     <div class="wrap" id="app">
 
-      @include('partials._wordify.nav')
-
+      @include('includes._wordify.nav')
       <section class="site-section py-lg">
         <div class="container">
           
@@ -43,9 +48,7 @@
               {{-- <div class="pt-5">
                 <p>Categories:  <a href="#">Food</a>, <a href="#">Travel</a>  Tags: <a href="#">#manila</a>, <a href="#">#asia</a></p>
               </div> --}}
-
-              <comments-component></comments-component>
-
+  
             </div>
 
             <!-- END main-content -->
@@ -177,11 +180,11 @@
       </section> --}}
       <!-- END section -->
   
-      @include('partials._wordify.footer')
+      @include('includes._wordify.footer')
       <!-- END footer -->
 
     </div>
     
-    @include('partials._wordify.scripts')
+    @include('includes._wordify.scripts')
   </body>
 </html>

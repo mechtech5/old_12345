@@ -3,13 +3,13 @@
   <head>
     <title></title>
 
-    @include('partials._wordify.head')
+    @include('includes._wordify.head')
   </head>
 
   <body>
     <div class="wrap">
 
-    @include('partials._wordify.nav')
+    @include('includes._wordify.nav')
 
 
     <section class="site-section pt-5">
@@ -179,7 +179,7 @@
       </div>
     </section>
   
-    @include('partials._wordify.footer')
+    @include('includes._wordify.footer')
 
     </div>
     

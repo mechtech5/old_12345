@@ -7,12 +7,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Laravelista\Comments\Commenter;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class User extends Authenticatable implements HasMedia
 {
-    use Notifiable, HasRoles, HasApiTokens, HasMediaTrait;
+    use Notifiable, HasRoles, HasApiTokens, HasMediaTrait, Commenter;
 
     /**
      * The attributes that are mass assignable.

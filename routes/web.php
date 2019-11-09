@@ -2,7 +2,7 @@
 
 Auth::routes();
 
-Route::domain('compete.localhost')->namespace('Compete')->group(function () {
+Route::domain('compete.jigsawme.test')->namespace('Compete')->group(function () {
 	Route::get('/', 'DashboardController@index')->name('compete.dashboard.index');
 	Route::get('/home', 'DashboardController@home')->name('compete.dashboard.home');
 	Route::resource('/rounds', 'RoundsController');
@@ -10,7 +10,7 @@ Route::domain('compete.localhost')->namespace('Compete')->group(function () {
 	Route::resource('/round_details', 'RoundDetailsController');
 });
 
-Route::domain('ayushiblogs.localhost')->name('ayushiblogs.')->namespace('Ayushiblogs')->group(function () {
+Route::domain('ayushiblogs.jigsawme.test')->name('ayushiblogs.')->namespace('Ayushiblogs')->group(function () {
 	Route::get('/', 'BlogController@index')->name('index');
 	Route::get('/post/{slug}', 'BlogController@show')->name('show');
 	Route::get('/post/{tag}', 'BlogController@tag')->name('tag');

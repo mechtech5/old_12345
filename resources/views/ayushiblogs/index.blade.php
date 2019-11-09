@@ -1,16 +1,25 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title></title>
+    <title>Welcome to AyushiBlogs</title>
     
-    @include('partials._wordify.head')
-    
+    @include('includes._wordify.head')
+    <style>
+      @media only screen and (max-width: 991px) {
+        .sidebar {
+          margin-top: 50px;
+        }
+        #slider-section {
+          display: none;
+        }
+      }
+    </style>
   </head>
 
   <body>
     <div class="wrap">
 
-      @include('partials._wordify.nav')
+      @include('includes._wordify.nav')
       <!-- END header -->
 
       <section class="site-section pt-5 pb-5">
@@ -174,11 +183,11 @@
         </div>
       </section>
     
-      @include('partials._wordify.footer')
+      @include('includes._wordify.footer')
       <!-- END footer -->
 
     </div>
     
-    @include('partials._wordify.scripts')
+    @include('includes._wordify.scripts')
   </body>
 </html>
