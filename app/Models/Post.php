@@ -9,7 +9,7 @@ use Wink\WinkTag;
 
 class Post extends Model
 {
-		use Commentable;
+	use Commentable;
 
 	  /**
      * The attributes that aren't mass assignable.

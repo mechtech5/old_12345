@@ -44,6 +44,11 @@
                 {!! $post->body !!}
               </div>
 
+              @comments([
+                  'model' => $post,
+                  'approved' => true
+              ])
+
               
               {{-- <div class="pt-5">
                 <p>Categories:  <a href="#">Food</a>, <a href="#">Travel</a>  Tags: <a href="#">#manila</a>, <a href="#">#asia</a></p>
@@ -186,5 +191,10 @@
     </div>
     
     @include('includes._wordify.scripts')
+    <script>
+      // $(document).ready(function(){
+
+      // });
+    </script>
   </body>
 </html>

@@ -16,6 +16,7 @@
 
                             <div class="col-md-6">
                                 <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                <small id="usernameHelp" class="form-text text-muted">Only alpha-numeric characters, dashes and underscores.</small>
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -66,6 +67,10 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+                                
+                                <a class="btn btn-link text-decoration-none" href="{{ route('login') }}">
+                                    {{ __('Already have an account?') }}
+                                </a>
                             </div>
                         </div>
                     </form>

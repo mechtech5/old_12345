@@ -2,21 +2,25 @@
 
 Auth::routes();
 
-Route::domain('compete.jigsawme.test')->namespace('Compete')->group(function () {
-	Route::get('/', 'DashboardController@index')->name('compete.dashboard.index');
-	Route::get('/home', 'DashboardController@home')->name('compete.dashboard.home');
-	Route::resource('/rounds', 'RoundsController');
-	Route::post('/rounds/join', 'RoundsController@join')->name('rounds.join');
-	Route::resource('/round_details', 'RoundDetailsController');
-});
+// Route::domain('compete.jigsawme.test')->namespace('Compete')->group(function () {
+// 	Route::get('/', 'DashboardController@index')->name('compete.dashboard.index');
+// 	Route::get('/home', 'DashboardController@home')->name('compete.dashboard.home');
+// 	Route::resource('/rounds', 'RoundsController');
+// 	Route::post('/rounds/join', 'RoundsController@join')->name('rounds.join');
+// 	Route::resource('/round_details', 'RoundDetailsController');
+// });
 
 Route::domain('ayushiblogs.jigsawme.test')->name('ayushiblogs.')->namespace('Ayushiblogs')->group(function () {
 	Route::get('/', 'BlogController@index')->name('index');
+	Route::get('/home', 'BlogController@home')->name('home');
 	Route::get('/post/{slug}', 'BlogController@show')->name('show');
 	Route::get('/post/{tag}', 'BlogController@tag')->name('tag');
 	Route::get('/contact', 'BlogController@contact')->name('contact');
 	Route::get('/about', 'BlogController@about')->name('about');
 	Route::get('/network', 'BlogController@network')->name('network');
+
+	// Actions
+	Route::get('/get-view-count', 'BlogController@getViewCount');
 });
 
 Route::get('/', 'WelcomeController@index');

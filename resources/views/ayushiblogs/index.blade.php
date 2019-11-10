@@ -17,7 +17,7 @@
   </head>
 
   <body>
-    <div class="wrap">
+    <div class="wrap" id="app">
 
       @include('includes._wordify.nav')
       <!-- END header -->
@@ -27,7 +27,7 @@
           <div class="row">
             <div class="col-md-12">
 
-              <div class="owl-carousel owl-theme home-slider">
+              <div class="owl-carousel owl-theme home-slider" id="slider-section">
                 @foreach($random_posts as $post)
                 <div>
                   <a href="{{ route('ayushiblogs.show', $post->slug) }}" class="a-block d-flex align-items-center height-lg" style="background-image: url('{{ $post->featured_image }}'); ">
@@ -41,6 +41,7 @@
                         <span class="mr-2">{{$post->publish_date->format('F d, Y')}} </span> 
                         {{-- &bullet; --}}
                         {{-- <span class="ml-2"><span class="fa fa-comments"></span> 3</span> --}}
+                        {{-- <span class="ml-2">3 views</span> --}}
                         
                       </div>
                       <h3>{{$post->title}}</h3>
@@ -80,6 +81,7 @@
                         <span class="mr-2">{{$post->publish_date->format('d F Y')}}</span> 
                         {{-- &bullet; --}}
                         {{-- <span class="ml-2"><span class="fa fa-comments"></span> 3</span> --}}
+                        {{-- <span class="ml-2">3 views</span> --}}
                       </div>
                       <h2>{{$post->title}}</h2>
                     </div>
@@ -187,7 +189,13 @@
       <!-- END footer -->
 
     </div>
-    
     @include('includes._wordify.scripts')
+    <script>
+      // $(document).ready(function(){
+      //   window.axios.get('/get-view-count').then(response => {
+      //     console.log(response.data);
+      //   }).catch(error => console.log(error.response.data));
+      // });
+    </script>
   </body>
 </html>

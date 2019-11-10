@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ayushiblogs;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use App\Models\Visitor;
 use Illuminate\Http\Request;
 use Wink\WinkAuthor;
@@ -11,6 +12,10 @@ use Wink\WinkTag;
 
 class BlogController extends Controller
 {
+    public function home() {
+        return redirect(route('ayushiblogs.index'));
+    }
+
     public function index()
     {
         $posts = WinkPost::with('tags')
@@ -41,7 +46,7 @@ class BlogController extends Controller
         $author = WinkAuthor::where('slug', 'ayushi-likhar')->first();   
         $tags = WinkTag::get()->random(3);
 
-        $post = WinkPost::with('tags')->where('slug', $slug)->first();
+        $post = Post::with('tags')->where('slug', $slug)->first();
 
         $visitor = new Visitor;
         $visitor->log();
@@ -68,5 +73,10 @@ class BlogController extends Controller
     public function network()
     {
         //
+    }
+
+    public function getViewCount()
+    {
+        return 'success';
     }
 }
