@@ -35,3 +35,6 @@ pay by jigsawme wallet
 global sitewide wallet, earn by activity 
 15,3 (decimal)
 earn by likes , comments, etc
+
+## TODO ##
+1. Create a minified version of few css files and use them
