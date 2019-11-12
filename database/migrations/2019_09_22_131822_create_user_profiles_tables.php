@@ -10,12 +10,12 @@ class CreateUserProfilesTables extends Migration
   {
     Schema::create('user_profiles', function (Blueprint $table) {
       $table->unsignedBigInteger('user_id')->primary();
-      $table->string('fname', 100)->nullable();
-      $table->string('lname', 100)->nullable();
-      $table->string('bio', 250)->nullable();
+      $table->string('fname');
+      $table->string('lname');
+      $table->text('bio')->nullable();
       $table->text('avatar')->nullable();
       $table->date('dob')->nullable();
-      $table->char('gender', 1)->nullable();
+      $table->string('gender')->default('M');
       $table->timestamps();
     });
   }
