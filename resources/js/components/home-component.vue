@@ -1,15 +1,24 @@
 <template>
 	<div class="container">
 		<div class="row">
-			<div class="col-3 mb-3" v-for="user in userLoop" :key="user.id">
+			<div class="col-sm-12 col-md-6 col-lg-3 mb-3" v-for="user in userLoop" :key="user.id">
 
 				<div class="card">
 				  <div class="card-body">
 				    <h4 class="card-title">{{ user.username }}</h4>
 				    <p class="card-text">{{ user.email }}</p>
-				    <a href="#" @click.prevent="add(user.id)" class="card-link">Add Friend</a>
-				    <!-- <a href="#" class="card-link">Accept</a> -->
-				    <!-- <a href="#" class="card-link">Decline</a> -->
+
+				    <a href="#" v-if="isEmpty(user.request)" @click.prevent="add(user.id)" class="card-link">Add Friend</a>
+
+						<span v-else-if="user.request.sender_id == user.id && user.request.accepted == 0">
+							<a href="#" @click.prevent="accept(user.request.id, user.id)" class="card-link">Accept</a>
+				    	<a href="#" @click.prevent="decline(user.request.id, user.id)" class="card-link">Decline</a>
+						</span>
+
+						<a href="#" v-else-if="user.request.receiver_id == user.id && user.request.accepted == 0">Request Sent</a>
+
+						<a href="#" v-else-if="((user.request.receiver_id == user.id && user.request.accepted == 1) || user.request.sender_id == user.id && user.request.accepted == 1)">Friends</a>
+				    
 				  </div>
 				</div>
 
@@ -20,31 +29,60 @@
 
 <script>
 export default{
-	props: ['logged_user', 'users'],
+	props: ['logged_user', 'users', 'requests'],
 	data(){
 		return {
-			userLoop: []
+			userLoop: [],
+			reqLoop: []
 		}
 	},
 	mounted(){
-		this.userLoop = this.users;
+		this.reqLoop = this.requests;
+		
+		let x = this.users;
+		this.reqLoop.forEach(function(r){
+			x.forEach(function(u){
+				if(u.id == r.sender_id || u.id == r.receiver_id) {
+					u.request = r;
+				}
+			});
+		});
+
+		this.userLoop = x;
 	},
 	methods: {
 		add(id) {
-			axios.post('/add', {'receiver_id' : id}).then(response => {
+			axios.post('/social/add', {'receiver_id' : id}).then(response => {
 				this.userLoop.forEach((v, k) => {
 						if (v.id == id)
 						Vue.set(this.userLoop, k, response.data);
-						// Vue.swal('Task Updated!');
+						// Vue.swal('Request Sent!');
 				});
 			}).catch(error => console.log(error.response.data));
 		},
-		accept() {
-
+		accept(id, sender_id) {
+			axios.post('/social/accept', {'req_id' : id, 'sender_id': sender_id}).then(response => {
+				this.userLoop.forEach((v, k) => {
+						if (v.id == sender_id)
+						Vue.set(this.userLoop, k, response.data);
+				});
+			}).catch(error => console.log(error.response.data));
 		},
-		decline() {
-			// this.users = this.users.filter(u => (u.id !== user.id));
-		}
+		decline(id, sender_id) {
+			axios.post('/social/decline', {'req_id' : id, 'sender_id': sender_id}).then(response => {
+				this.userLoop.forEach((v, k) => {
+						if (v.id == sender_id)
+						Vue.set(this.userLoop, k, response.data);
+				});
+			}).catch(error => console.log(error.response.data));
+		},
+		isEmpty(obj) {
+			for(var key in obj) {
+				if(obj.hasOwnProperty(key))
+						return false;
+			}
+			return true;
+		},
 	}
 }
 </script>

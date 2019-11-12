@@ -1958,32 +1958,83 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['logged_user', 'users'],
+  props: ['logged_user', 'users', 'requests'],
   data: function data() {
     return {
-      userLoop: []
+      userLoop: [],
+      reqLoop: []
     };
   },
   mounted: function mounted() {
-    this.userLoop = this.users;
+    this.reqLoop = this.requests;
+    var x = this.users;
+    this.reqLoop.forEach(function (r) {
+      x.forEach(function (u) {
+        if (u.id == r.sender_id || u.id == r.receiver_id) {
+          u.request = r;
+        }
+      });
+    });
+    this.userLoop = x;
   },
   methods: {
     add: function add(id) {
       var _this = this;
 
-      axios.post('/add', {
+      axios.post('/social/add', {
         'receiver_id': id
       }).then(function (response) {
         _this.userLoop.forEach(function (v, k) {
-          if (v.id == id) Vue.set(_this.userLoop, k, response.data); // Vue.swal('Task Updated!');
+          if (v.id == id) Vue.set(_this.userLoop, k, response.data); // Vue.swal('Request Sent!');
         });
       })["catch"](function (error) {
         return console.log(error.response.data);
       });
     },
-    accept: function accept() {},
-    decline: function decline() {// this.users = this.users.filter(u => (u.id !== user.id));
+    accept: function accept(id, sender_id) {
+      var _this2 = this;
+
+      axios.post('/social/accept', {
+        'req_id': id,
+        'sender_id': sender_id
+      }).then(function (response) {
+        _this2.userLoop.forEach(function (v, k) {
+          if (v.id == sender_id) Vue.set(_this2.userLoop, k, response.data);
+        });
+      })["catch"](function (error) {
+        return console.log(error.response.data);
+      });
+    },
+    decline: function decline(id, sender_id) {
+      var _this3 = this;
+
+      axios.post('/social/decline', {
+        'req_id': id,
+        'sender_id': sender_id
+      }).then(function (response) {
+        _this3.userLoop.forEach(function (v, k) {
+          if (v.id == sender_id) Vue.set(_this3.userLoop, k, response.data);
+        });
+      })["catch"](function (error) {
+        return console.log(error.response.data);
+      });
+    },
+    isEmpty: function isEmpty(obj) {
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key)) return false;
+      }
+
+      return true;
     }
   }
 });
@@ -64152,34 +64203,81 @@ var render = function() {
       "div",
       { staticClass: "row" },
       _vm._l(_vm.userLoop, function(user) {
-        return _c("div", { key: user.id, staticClass: "col-3 mb-3" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("h4", { staticClass: "card-title" }, [
-                _vm._v(_vm._s(user.username))
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "card-text" }, [
-                _vm._v(_vm._s(user.email))
-              ]),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "card-link",
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.add(user.id)
-                    }
-                  }
-                },
-                [_vm._v("Add Friend")]
-              )
+        return _c(
+          "div",
+          { key: user.id, staticClass: "col-sm-12 col-md-6 col-lg-3 mb-3" },
+          [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c("h4", { staticClass: "card-title" }, [
+                  _vm._v(_vm._s(user.username))
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-text" }, [
+                  _vm._v(_vm._s(user.email))
+                ]),
+                _vm._v(" "),
+                _vm.isEmpty(user.request)
+                  ? _c(
+                      "a",
+                      {
+                        staticClass: "card-link",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.add(user.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Add Friend")]
+                    )
+                  : user.request.sender_id == user.id &&
+                    user.request.accepted == 0
+                  ? _c("span", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "card-link",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.accept(user.request.id, user.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Accept")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "card-link",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.decline(user.request.id, user.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Decline")]
+                      )
+                    ])
+                  : user.request.receiver_id == user.id &&
+                    user.request.accepted == 0
+                  ? _c("a", { attrs: { href: "#" } }, [_vm._v("Request Sent")])
+                  : (user.request.receiver_id == user.id &&
+                      user.request.accepted == 1) ||
+                    (user.request.sender_id == user.id &&
+                      user.request.accepted == 1)
+                  ? _c("a", { attrs: { href: "#" } }, [_vm._v("Friends")])
+                  : _vm._e()
+              ])
             ])
-          ])
-        ])
+          ]
+        )
       }),
       0
     )
@@ -77554,8 +77652,8 @@ if (token) {
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "1a4fb0b3dccebe5276d9",
-  cluster: "ap2",
+  key: "",
+  cluster: "mt1",
   encrypted: true
 });
 
@@ -77804,8 +77902,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ayushlikhar/code/2019/november/jigsawme/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/ayushlikhar/code/2019/november/jigsawme/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\laragon\www\js_user\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\laragon\www\js_user\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

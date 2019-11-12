@@ -31,6 +31,13 @@ Route::resource('/article', 'ArticlesController');
 Route::resource('/comment', 'CommentsController');
 Route::resource('/tag', 'TagsController');
 
+Route::group(['prefix' => 'social', 'namespace' => 'Social'], function() {
+	Route::post('/add', 'SocialController@add')->name('social.add');
+	Route::post('/accept', 'SocialController@accept')->name('social.accept');
+	Route::post('/decline', 'SocialController@decline')->name('social.decline');
+});
+
+
 Route::group(['prefix' => 'admin', 'namespace' => 'Auth'], function() {
 	Route::resource('/users', 'UsersController');
 	Route::resource('/roles', 'RolesController');
