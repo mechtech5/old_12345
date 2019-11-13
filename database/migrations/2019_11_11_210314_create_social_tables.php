@@ -17,7 +17,7 @@ class CreateSocialTables extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('sender_id');
             $table->unsignedBigInteger('receiver_id');
-            $table->string('status');
+            $table->timestamp('accepted_at')->nullable();
             $table->timestamps();
         });
     }

@@ -10,14 +10,14 @@
 
 				    <a href="#" v-if="isEmpty(user.request)" @click.prevent="add(user.id)" class="card-link">Add Friend</a>
 
-						<span v-else-if="user.request.sender_id == user.id && user.request.accepted == 0">
+						<span v-else-if="user.request.sender_id == user.id && user.request.accepted_at == null">
 							<a href="#" @click.prevent="accept(user.request.id, user.id)" class="card-link">Accept</a>
 				    	<a href="#" @click.prevent="decline(user.request.id, user.id)" class="card-link">Decline</a>
 						</span>
 
-						<a href="#" v-else-if="user.request.receiver_id == user.id && user.request.accepted == 0">Request Sent</a>
+						<a href="#" v-else-if="user.request.receiver_id == user.id && user.request.accepted_at == null">Request Sent</a>
 
-						<a href="#" v-else-if="((user.request.receiver_id == user.id && user.request.accepted == 1) || user.request.sender_id == user.id && user.request.accepted == 1)">Friends</a>
+						<a href="#" v-else-if="((user.request.receiver_id == user.id && user.request.accepted_at != null) || user.request.sender_id == user.id && user.request.accepted_at != null)">Friends</a>
 				    
 				  </div>
 				</div>

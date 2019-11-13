@@ -64233,7 +64233,7 @@ var render = function() {
                       [_vm._v("Add Friend")]
                     )
                   : user.request.sender_id == user.id &&
-                    user.request.accepted == 0
+                    user.request.accepted_at == null
                   ? _c("span", [
                       _c(
                         "a",
@@ -64266,12 +64266,12 @@ var render = function() {
                       )
                     ])
                   : user.request.receiver_id == user.id &&
-                    user.request.accepted == 0
+                    user.request.accepted_at == null
                   ? _c("a", { attrs: { href: "#" } }, [_vm._v("Request Sent")])
                   : (user.request.receiver_id == user.id &&
-                      user.request.accepted == 1) ||
+                      user.request.accepted_at != null) ||
                     (user.request.sender_id == user.id &&
-                      user.request.accepted == 1)
+                      user.request.accepted_at != null)
                   ? _c("a", { attrs: { href: "#" } }, [_vm._v("Friends")])
                   : _vm._e()
               ])
@@ -77652,8 +77652,8 @@ if (token) {
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "",
-  cluster: "mt1",
+  key: "1a4fb0b3dccebe5276d9",
+  cluster: "ap2",
   encrypted: true
 });
 
@@ -77902,8 +77902,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\laragon\www\js_user\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\laragon\www\js_user\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/ayushlikhar/code/2019/november/jigsawme/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/ayushlikhar/code/2019/november/jigsawme/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

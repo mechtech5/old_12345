@@ -32,7 +32,7 @@ class SocialController extends Controller
 	public function accept()
   {
   	$req = UserSocial::find(request('req_id'));
-		$req->accepted = 1;
+		$req->accepted_at = now();
 		$req->update();
 
 		$user = User::where('id', request('sender_id'))->first();
