@@ -10,6 +10,9 @@ Auth::routes();
 // 	Route::resource('/round_details', 'RoundDetailsController');
 // });
 
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('login/{provider}/callback','Auth\LoginController@handleProviderCallback');
+
 Route::domain('ayushiblogs.jigsawme.test')->name('ayushiblogs.')->namespace('Ayushiblogs')->group(function () {
 	Route::get('/', 'BlogController@index')->name('index');
 	Route::get('/home', 'BlogController@home')->name('home');
