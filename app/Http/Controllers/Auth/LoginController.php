@@ -7,35 +7,14 @@ use App\SocialIdentity;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
     use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
     protected $redirectTo = '/home';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -48,50 +27,53 @@ class LoginController extends Controller
 
     public function redirectToProvider($provider)
     {
-       return Socialite::driver($provider)->redirect();
+      return Socialite::driver($provider)->redirect();
     }
 
     public function handleProviderCallback($provider)
     {
-       try {
-           $user = Socialite::driver($provider)->user();
-           return json_encode($user);
-       } catch (Exception $e) {
-           return redirect('/login');
-       }
+      try {
+          $user = Socialite::driver($provider)->user();
+      } catch (Exception $e) {
+          return redirect('/login');
+      }
 
-       $authUser = $this->findOrCreateUser($user, $provider);
-       Auth::login($authUser, true);
-       return redirect($this->redirectTo);
+      return $authUser = $this->findOrCreateUser($user, $provider);
+      Auth::login($authUser, true);
+      return redirect($this->redirectTo);
     }
 
 
-    public function findOrCreateUser($providerUser, $provider)
+    public function findOrCreateUser($user, $provider)
     {
         $account = SocialIdentity::whereProviderName($provider)
-                  ->whereProviderId($providerUser->getId())
+                  ->whereProviderId($user->getId())
                   ->first();
 
-        if ($account) {
-           return $account->user;
-        } else {
-           $user = User::whereEmail($providerUser->getEmail())->first();
+        if($account)
+        {
+            return $account->user;
+        } 
+        else 
+        {
+            $db_user = User::whereEmail($user->getEmail())->first();
 
-           if (! $user) {
-               $user = User::create([
-                   'email' => $providerUser->getEmail(),
-                   'name'  => $providerUser->getName(),
-                   'username' => 'githubuser'.rand(1, 99999),
-                   'password' => bcrypt('password')
-               ]);
-           }
+            if(!$db_user) 
+            {
+                $db_user = User::create([
+                    'email' => $user->getEmail(),
+                    'name'  => $user->getName(),
+                    'username' => $provider.'_user'.uniqid(),
+                    'password' => Hash::make(uniqid())
+                ]);
+            }
 
-           $user->identities()->create([
-               'provider_id'   => $providerUser->getId(),
-               'provider_name' => $provider,
-           ]);
+            $db_user->identities()->create([
+                'provider_id'   => $user->getId(),
+                'provider_name' => $provider,
+            ]);
 
-           return $user;
+            return $db_user;
         }
     }
 }

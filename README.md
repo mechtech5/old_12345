@@ -40,3 +40,4 @@ earn by likes , comments, etc
 1. Create a minified version of few css files and use them
 
 You may log in using admin@mail.com and password: 8orHzVBlykcVKMhW
+

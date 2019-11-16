@@ -42,9 +42,27 @@ return [
     ],
 
     'google' => [ 
-        'client_id' => env('G+_CLIENT_ID'),
-        'client_secret' => env('G+_CLIENT_SECRET'),
-        'redirect' => env('G+_REDIRECT')
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT')
+    ],
+
+    'twitter' => [
+        'client_id' => env('TWITTER_CLIENT_ID'),  // Your Twitter Client ID
+        'client_secret' => env('TWITTER_CLIENT_SECRET'), // Your Twitter Client Secret
+        'redirect' => env('TWITTER_CALLBACK_URL'),
+    ],
+
+    'facebook' => [ 
+        'client_id' => env('FB_CLIENT_ID'),
+        'client_secret' => env('FB_CLIENT_SECRET'),
+        'redirect' => env('FB_REDIRECT') 
+    ],
+
+    'linkedin' => [ 
+        'client_id' => env('LINKEDIN_CLIENT_ID'),
+        'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
+        'redirect' => env('LINKEDIN_REDIRECT') 
     ],
 
 ];
