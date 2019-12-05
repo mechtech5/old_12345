@@ -17,10 +17,9 @@ window.Vue = require('vue');
 //     require('./components/passport/PersonalAccessTokens.vue').default
 // );
 
-Vue.component('feed-component', require('./components/feed-component.vue').default)
-Vue.component('home-component', require('./components/home-component.vue').default)
-Vue.component('profile-component', require('./components/profile-component.vue').default)
-// Vue.component('comments-component', require('./components/comments-component.vue').default)
+Vue.component('Feed', require('./pages/Feed.vue').default)
+Vue.component('Profile', require('./pages/Profile.vue').default)
+Vue.component('Comments', require('./components/Comments.vue').default)
 
 
 

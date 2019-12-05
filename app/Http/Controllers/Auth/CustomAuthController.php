@@ -9,12 +9,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 
-class ApiController extends Controller 
+class CustomAuthController extends Controller 
 {
   public $successStatus = 200;
 
   public function register(Request $request) 
-  {    
+  { 
+    return $request->all();
+
     $validator = Validator::make($request->all(), [ 
       'username' => 'required|string|min:3|max:16',
       'email' => 'required|email',
@@ -30,17 +32,19 @@ class ApiController extends Controller
     $input = $request->all();  
     $input['password'] = Hash::make($input['password']);
     $user = User::create($input); 
-    $success['token'] =  $user->createToken('AppName')->accessToken;
-    return response()->json(['success'=>$success], $this->successStatus); 
+    $user = Auth::user();
+    // $success['token'] =  $user->createToken('AppName')->accessToken;
+    return response()->json(['success'=>$success, 'user' => $user], $this->successStatus); 
   }
 
 
   public function login()
   { 
+    return $request->all();
     if(Auth::attempt(['username' => request('username'), 'password' => request('password')])){ 
       $user = Auth::user(); 
-      $success['token'] =  $user->createToken('AppName')-> accessToken; 
-      return response()->json(['success' => $success], $this-> successStatus); 
+      // $success['token'] =  $user->createToken('AppName')-> accessToken; 
+      return response()->json(['success' => $success, 'user' => $user], $this-> successStatus); 
     } else{ 
       return response()->json(['error'=>'Unauthorised'], 401); 
     } 
