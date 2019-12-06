@@ -15,11 +15,11 @@ class CustomAuthController extends Controller
 
   public function register(Request $request) 
   { 
-    return $request->all();
+    // return $request->all();
 
     $validator = Validator::make($request->all(), [ 
-      'username' => 'required|string|min:3|max:16',
-      'email' => 'required|email',
+      'username' => 'required|string|min:3|max:16|unique:users|alpha_dash',
+      'email' => 'required|email|unique:users',
       'password' => 'required',  
       'c_password' => 'required|same:password', 
     ]);
@@ -32,27 +32,31 @@ class CustomAuthController extends Controller
     $input = $request->all();  
     $input['password'] = Hash::make($input['password']);
     $user = User::create($input); 
-    $user = Auth::user();
-    // $success['token'] =  $user->createToken('AppName')->accessToken;
-    return response()->json(['success'=>$success, 'user' => $user], $this->successStatus); 
+    // $token =  $user->createToken('AppName')->accessToken;
+    return response()->json(['status' => true, 'message' => 'Signup Successful'], $this->successStatus); 
   }
 
-
-  public function login()
+  public function login(Request $request)
   { 
-    return $request->all();
+    // return $request->all();
     if(Auth::attempt(['username' => request('username'), 'password' => request('password')])){ 
       $user = Auth::user(); 
-      // $success['token'] =  $user->createToken('AppName')-> accessToken; 
-      return response()->json(['success' => $success, 'user' => $user], $this-> successStatus); 
+      $token =  $user->createToken('AppName')-> accessToken; 
+      return response()->json(['status' => true, 'message' => 'Login Successful', 'user' => $user, 'token' => $token], $this-> successStatus); 
     } else{ 
-      return response()->json(['error'=>'Unauthorised'], 401); 
+      return response()->json(['status' => false, 'message' => 'Unauthorised'], 401); 
     } 
   }
 
-  public function me() 
+  public function me(Request $request) 
   {
     $user = Auth::user();
-    return response()->json(['success' => $user], $this->successStatus); 
+    if($user) {
+      return response()->json([
+        'status' => true, 
+        'message' => 'User Authenticated', 
+        'user' => auth()->user()
+      ], $this->successStatus);
+    }
   }
 } 

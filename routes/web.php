@@ -1,8 +1,6 @@
 <?php
 
 Auth::routes();
-Route::post('/custom-login', 'Auth\CustomAuthController@login');
-Route::post('/custom-register', 'Auth\CustomAuthController@register');
 
 // Route::domain('compete.jigsawme.test')->namespace('Compete')->group(function () {
 // 	Route::get('/', 'DashboardController@index')->name('compete.dashboard.index');
