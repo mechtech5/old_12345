@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 col-md-6 col-lg-3 mb-3" v-for="user in userLoop" :key="user.id">
+			<!-- <div class="col-sm-12 col-md-6 col-lg-3 mb-3" v-for="user in userLoop" :key="user.id">
 
 				<div class="card">
 				  <div class="card-body">
@@ -22,7 +22,8 @@
 				  </div>
 				</div>
 
-			</div>
+			</div> -->
+			<Login />
 		</div>
 	</div>
  </template>
@@ -30,6 +31,7 @@
 <script>
 export default{
 	props: ['logged_user', 'users', 'requests'],
+	// components: {Register, Login},
 	data(){
 		return {
 			userLoop: [],

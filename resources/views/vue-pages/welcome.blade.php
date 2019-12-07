@@ -3,7 +3,7 @@
 @section('content')
 
 	@php $posts = []; @endphp
-  <feed-component :logged_user="{{ json_encode(auth()->user()) }}" 
-  	:posts="{{ json_encode($posts) }}"></feed-component>
+  <landing-page :logged_user="{{ json_encode(auth()->user()) }}" 
+  	:posts="{{ json_encode($posts) }}"></landing-page>
   	
 @endsection

@@ -36,7 +36,7 @@
 				</div>
 				<div class="card mb-2">
 					<div class="card-body">
-						
+						<Login />
 					</div>
 				</div>
 			</div>
@@ -53,11 +53,13 @@
 
 <script>
 	import { VueEditor } from "vue2-editor";
+	import Register from '../components/Register';
+	import Login from '../components/Login';
 
 	export default {
 		props: ['logged_user', 'posts'],
 		components: {
-    	VueEditor
+    	VueEditor, Login, Register
 		},
 		data() {
 			return {
