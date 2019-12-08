@@ -30,9 +30,9 @@ Route::get('/', 'WelcomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'HomeController@profile')->name('profile');
 
-Route::resource('/article', 'ArticlesController');
-Route::resource('/comment', 'CommentsController');
-Route::resource('/tag', 'TagsController');
+// Route::resource('/article', 'ArticlesController');
+// Route::resource('/comment', 'CommentsController');
+// Route::resource('/tag', 'TagsController');
 
 Route::group(['prefix' => 'social', 'namespace' => 'Social'], function() {
 	Route::post('/add', 'SocialController@add')->name('social.add');
