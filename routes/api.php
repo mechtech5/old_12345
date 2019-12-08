@@ -1,13 +1,13 @@
 <?php
 
-Route::group(['prefix' => 'v1', 'namespace' => 'Api'], function(){
- 	// Route::post('login', 'AuthController@login');
- 	// Route::post('register', 'AuthController@register');
- 	// Route::group(['middleware' => 'auth:api'], function()	{
- 	// 	Route::post('me', 'AuthController@me');
+Route::post('/login', 'Auth\CustomAuthController@login');
+Route::post('/register', 'Auth\CustomAuthController@register');
 
- 	// });
+Route::group(['middleware' => 'auth:api'], function()	{
+    Route::get('/me', 'Auth\CustomAuthController@me');
+
+    Route::get('/todo', 'Apps\TodoController@index');
+    Route::post('/todo', 'Apps\TodoController@store');
+    Route::delete('/todo', 'Apps\TodoController@destroy');
 });
-
-
 
